@@ -1,0 +1,35 @@
+trigger:
+  branches:
+    include:
+      - dev
+      - qa
+      - master
+  paths:
+    include:
+      - /
+    exclude:
+      - 'azure-pipelines.yml'
+
+pool:
+  vmImage: ubuntu-latest
+
+resources:
+  repositories:
+    - repository: InfraestructuraCorporativa
+      type: git
+      name: Infraestructura-Corporativa/Infraestructura-Corporativa
+      ref: refs/heads/main
+
+    - repository: DevOps
+      type: git
+      name: A190-00-pipeline-devops 
+      ref: refs/heads/main
+
+variables:
+  - group: MigrationConfig
+  - group: MigrationCommon
+  - group: MigrationDev
+
+stages:
+  - template: A190-15-ps-migration_weekly.pipeline.yml@Devops
+
