@@ -30,6 +30,8 @@ listQuery.append(querys("4", mora.PS_CLASS_INSTR,msql.TRUNCATE_IRL_PS_CLASS_INST
 listQuery.append(querys("5", mora.PS_CRSE_CATALOG,msql.TRUNCATE_IRL_PS_CRSE_CATALOG,msql.INSERT_IRL_PS_CRSE_CATALOG))
 listQuery.append(querys("6", mora.PS_LVF_EMPL_AS400,msql.TRUNCATE_IRL_PS_LVF_EMPL_AS400,msql.INSERT_IRL_PS_LVF_EMPL_AS400))
 listQuery.append(querys("7", mora.PS_HOLIDAY_DATE,msql.TRUNCATE_IRL_PS_HOLIDAY_DATE,msql.INSERT_IRL_PS_HOLIDAY_DATE))
+listQuery.append(querys("8", mora.PS_TERM_TBL,msql.TRUNCATE_IRL_PS_TERM_TBL,msql.INSERT_IRL_PS_TERM_TBL))
+listQuery.append(querys("9", mora.PS_UTP_PARAM_VARIO,msql.TRUNCATE_IRL_PS_UTP_PARAM_VARIO,msql.INSERT_IRL_PS_UTP_PARAM_VARIO))
 
 
 # def get_db_secret(secret_name, region_name):
