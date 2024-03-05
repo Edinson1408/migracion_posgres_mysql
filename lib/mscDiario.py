@@ -3,6 +3,10 @@ import psycopg2
 import pymysql
 import lib.QuerysMysql as msql
 import lib.QuerysOracle as mora
+from email.message import EmailMessage
+import smtplib
+import ssl
+from lib.email import my_function_email
 from datetime import datetime
 # import boto3
 import os
@@ -34,25 +38,15 @@ listQuery.append(querys("8", mora.PS_TERM_TBL,msql.TRUNCATE_IRL_PS_TERM_TBL,msql
 listQuery.append(querys("9", mora.PS_UTP_PARAM_VARIO,msql.TRUNCATE_IRL_PS_UTP_PARAM_VARIO,msql.INSERT_IRL_PS_UTP_PARAM_VARIO))
 
 
-# def get_db_secret(secret_name, region_name):
-#     client = boto3.client('secretsmanager', region_name=region_name)
-#     response = client.get_secret_value(SecretId=secret_name)
-#     secret_string = response['SecretString']
-#     return json.loads(secret_string)
+# notifiacion al correo
+pass_email= os.getenv('APP_EMAIL'), 
+hour_init=str(datetime.now())
+my_function_email(pass_email,hour_init,'Inicio')
 
-# # Usage example
-# secret_name = os.environ.get('SECRET_NAME')
-# region_name = 'us-east-1'
-# secret = get_db_secret(secret_name, region_name)
+
 
 """Conexión Oracle"""
 def connectionOracle():
-    # conn = cx_Oracle.connect(
-    #     user='DSALAZAR',
-    #     password='U7p#20210208',
-    #     dsn='10.23.4.23:1521/CS90TST',
-    #     encoding='UTF-8'
-    # )
     conn = psycopg2.connect(
         database = os.getenv('POSTGRE_DB'), 
         user = os.getenv('POSTGRE_USER'), 
@@ -128,7 +122,7 @@ def INSERT_PROGRAMACION_DIARIA():
         except Exception as e:
             print("Ocurrio un error al ejecutar el paso: " + str(query.id) + " " + str(e))
     print("FIN INSERT_PROGRAMACION_DIARIA" + str(datetime.now()))
-
+    my_function_email(pass_email,str(datetime.now()),'finalizo')
 
 def filtrarQuerys():
     if ejecutar !="0":
